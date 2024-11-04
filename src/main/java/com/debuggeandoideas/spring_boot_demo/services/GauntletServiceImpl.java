@@ -1,10 +1,12 @@
 package com.debuggeandoideas.spring_boot_demo.services;
 
-import com.debuggeandoideas.spring_boot_demo.models.Stone;
+import com.debuggeandoideas.spring_boot_demo.models.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Getter
 @Primary
+//Use when this bean depends on our bean
+@ConditionalOnBean( value = {
+        MindStone.class,
+        PowerStone.class,
+        RealityStone.class,
+        SoulStone.class,
+        SpaceStone.class,
+        TimeStone.class
+})
 public class GauntletServiceImpl implements GauntletService {
 
     private final Stone reality;

@@ -8,13 +8,16 @@ import lombok.extern.java.Log;
 @Log
 public class SpaceStone extends Stone {
 
-    private static final String COLOR = "Blue";
-    private static final String NAME = "Space Stone";
-    private static final String LOCATION = "Tesseract";
-    private static final int ENERGY_LEVEL = 7;
-
-    public SpaceStone() {
-        super(COLOR, NAME, LOCATION, ENERGY_LEVEL);
+    public SpaceStone(
+            String colorProperty,
+            String nameProperty,
+            String locationProperty,
+            Integer energyLevelProperty
+    ) {
+        super(colorProperty,
+                nameProperty,
+                locationProperty,
+                energyLevelProperty);
     }
 
     @Override

@@ -1,16 +1,12 @@
 package com.debuggeandoideas.spring_boot_demo;
 
-import com.debuggeandoideas.spring_boot_demo.models.MindStone;
-import com.debuggeandoideas.spring_boot_demo.models.PowerStone;
+import com.debuggeandoideas.spring_boot_demo.components.ThanosComponent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("classpath:configs/stone.properties")
 public class SpringBootDemoApplication implements CommandLineRunner {
 
 	//DI, properties, configs and java methods
@@ -19,7 +15,8 @@ public class SpringBootDemoApplication implements CommandLineRunner {
 	//private String value;
 
 
-
+	@Autowired
+	private ThanosComponent thanos;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDemoApplication.class, args);
@@ -27,6 +24,7 @@ public class SpringBootDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	
+		thanos.snap();
+
 	}
 }

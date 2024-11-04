@@ -5,15 +5,14 @@ import com.debuggeandoideas.spring_boot_demo.models.*;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.*;
 
 @Slf4j
 @Configuration
-@Profile("default")
+@Profile("movie")
 @PropertySources({
-        @PropertySource("classpath:configs/stone.properties"),
+        @PropertySource("classpath:configs/stone-movie.properties"),
         @PropertySource("classpath:configs/mind_stone.properties"),
         @PropertySource("classpath:configs/power_stone.properties"),
         @PropertySource("classpath:configs/reality_stone.properties"),
@@ -21,7 +20,7 @@ import org.springframework.context.annotation.*;
         @PropertySource("classpath:configs/space_stone.properties"),
         @PropertySource("classpath:configs/time_stone.properties")
 })
-public class StoneConfigs {
+public class StoneConfigsMovie {
 
     @Value("${subtitles.url}") private String subtitlesUrl;
     @Value("${spring.profiles.active:default}") private String profile;
@@ -60,7 +59,6 @@ public class StoneConfigs {
     public void init() {
         log.info("Loading subtitles: {}, with profile: {}", this.subtitlesUrl, profile);
     }
-
     @Bean(name = "time")
     @Scope("prototype")
     @ConditionalOnProperty(
@@ -72,15 +70,15 @@ public class StoneConfigs {
                 TimeStone(colorTime, nameTime, locationTime, energyTime);
     }
 
-  @Bean(name = "mind")
-  @Scope("prototype")
-  @ConditionalOnProperty(
-          name = "stones.mind.enabled",
-          havingValue = "true"
-  )
-  public MindStone mindStone() {
-      return new
-              MindStone(colorMind, nameMind, locationMind, energyMind);
+    @Bean(name = "mind")
+    @Scope("prototype")
+    @ConditionalOnProperty(
+            name = "stones.mind.enabled",
+            havingValue = "true"
+    )
+    public MindStone mindStone() {
+        return new
+                MindStone(colorMind, nameMind, locationMind, energyMind);
     }
 
     @Bean(name = "power")
